@@ -3,7 +3,8 @@
 Bullet::Bullet(float x, float y, int direction)
 {
 	m_Sprite = new AWSprite("images/Bullet.bmp", 1, 1);
-	m_Sprite->set_auto_move(SPEED);
+	m_Sprite->set_transparent_colour(255, 0, 255);
+	m_Sprite->set_auto_move(10);
 
 	// Switch that applies a velocity to a bullet depending on the int direction
 	// consider swapping for an enumerated type
@@ -20,8 +21,9 @@ Bullet::Bullet(float x, float y, int direction)
 		break;
 
 	case 2:
-		m_Sprite->set_velocities(SPEED, 0); // RIGHT
 		m_Sprite->set_world_position(x + FIRE_OFFSET, y);
+		m_Sprite->set_velocities(SPEED, 0); // RIGHT
+
 		break;
 
 	case 3:
@@ -29,6 +31,11 @@ Bullet::Bullet(float x, float y, int direction)
 		m_Sprite->set_world_position(x, y + FIRE_OFFSET);
 		break;
 	}
+}
+
+Bullet::~Bullet()
+{
+	SAFE_DELETE_PTR(m_Sprite);
 }
 
 AWSprite* Bullet::return_Sprite()

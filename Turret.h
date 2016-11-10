@@ -20,6 +20,8 @@ private:
 
 public:
 	Turret(std::vector<GameObject* > &actors, float x, float y);
+	// ADDED: 10/09 destructor
+	~Turret();
 	void update();
 	AWSprite* return_Sprite();
 	bool is_Static();
