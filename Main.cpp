@@ -5,7 +5,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	GameBase::initSDL(640, 480);
+	GameBase::initSDL(1200, 800);
 	Game *game = new Game();
 
 	game->setUp();

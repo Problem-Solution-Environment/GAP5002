@@ -12,6 +12,11 @@ Turret_Behaviour::Turret_Behaviour(std::vector<GameObject* > &actors, float x, f
 	m_Timer->startTimer();
 }
 
+Turret_Behaviour::~Turret_Behaviour()
+{
+	SAFE_DELETE_PTR(m_Timer);
+}
+
 void Turret_Behaviour::checkTimer()
 {
 	if (m_Timer)
