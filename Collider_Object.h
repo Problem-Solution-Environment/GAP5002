@@ -5,6 +5,7 @@ class Collider_Object : public GameObject
 {
 private:
 	AWSprite* m_Sprite;
+	float m_Angle;
 
 public:
 	Collider_Object(float x, float y);

@@ -1,7 +1,29 @@
 #include "Room_Object.h"
-Room_Object::Room_Object()
+Room_Object::Room_Object(std::multimap<OBJECT_ID, Vector2> data)
 {
-	createObjects();
+	for (std::multimap<OBJECT_ID, Vector2>::iterator iter = data.begin(); iter != data.end(); iter++)
+	{
+		switch (iter->first)
+		{
+		case TURRET_ID:
+			m_Actors.push_back(new Turret(m_Actors, iter->second.getX(), iter->second.getY()));
+			break;
+
+		case COLLIDER_ID:
+			m_Actors.push_back(new Collider_Object(iter->second.getX(), iter->second.getY()));
+			break;
+		}
+
+
+	}
+}
+
+Room_Object::~Room_Object()
+{
+	for (int i = 0; i < m_Actors.size(); i++)
+	{
+		deleteElement(i);
+	}
 }
 
 void Room_Object::createObjects()
@@ -17,6 +39,8 @@ void Room_Object::updateObjects()
 	for (int i = 0; i < m_Actors.size(); i++)
 	{
 		m_Actors[i]->update();
+
+
 		if (m_Actors[i]->return_Sprite()->is_on_screen() == false)
 		{
 			deleteElement(i);

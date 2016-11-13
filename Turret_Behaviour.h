@@ -21,6 +21,9 @@ public:
 	// ADDED: 10/09 destructor
 	~Turret_Behaviour();
 
+	// Checks to see how many seconds have passed
 	void checkTimer();
+
+	// Pushes bullets onto the Game Vector
 	void fire();
 };
